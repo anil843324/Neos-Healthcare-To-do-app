@@ -25,7 +25,6 @@ const useTimer = (totalDuration) => {
   }, [timerOn]);
 
 
-
   return {
 
     time,
