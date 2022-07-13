@@ -2,10 +2,7 @@ export const addTodo=(data)=>{
 
      return {
          type:"Add-To-Do",
-         payload:{
-            id:new Date().getTime().toString(),
-            data,
-         }
+         payload:data
      }
 }
 export const deleteTodo=(id)=>{

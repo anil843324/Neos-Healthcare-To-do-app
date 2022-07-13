@@ -1,43 +1,59 @@
-import React ,{useDispatch}from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import "./Todo.css"
 
 import { deleteTodo } from "../../redux/actions/index"
-const ShowList = ({ele,time}) => {
+
+
+const ShowList = () => {
 
     const dispatch = useDispatch()
 
-    return (
-        <div>
+    const list = useSelector((state) => state.todoReducers.list)
 
-            <div className='eachItem' key={ele.id}>
-
-                <h3>{ele.data}</h3>
-
-                <div className='iconContainer'>
-
-                    <h4>
-                        {/*  minute */}
-                        <span>{(Math.floor(time / 60)) < 10 ? ("0" + Math.floor(time / 60)) : (Math.floor(time / 60))}:</span>
-                        {/*  second */}
-                        <span>{(time % 60) < 10 ? ("0" + time % 60) : (time % 60)}</span>
-                    </h4>
-                    <input type="checkbox" value="checked" />
-
-                    <button
-                        onClick={() => {
-                            dispatch(deleteTodo(ele.id))
-                        }}
-                    >Delete</button>
+    
 
 
-                </div>
+    
 
 
 
-            </div>
+return (
+    <div>
 
-        </div>
-    )
+        {
+            list.map((ele) => {
+                return (
+                    <div className='eachItem' key={ele.id}>
+
+                        <h3>{ele.data}</h3>
+
+                        <div className='iconContainer'>
+
+                            <h4>
+                               {ele.time}
+                            </h4>
+                             
+
+                            <button
+                                onClick={() => {dispatch(deleteTodo(ele.id))} }
+                            >Delete</button>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                )
+            })
+        }
+
+
+
+    </div>
+)
 }
 
 export default ShowList

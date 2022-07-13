@@ -8,16 +8,10 @@ const todoReducers = (state = initialData, action) => {
     switch (action.type) {
 
         case "Add-To-Do":
-            const { id, data } = action.payload;
+          
             return {
                 ...state,
-                list: [
-                    ...state.list,
-                    {
-                        id,
-                        data,
-
-                    }]
+                list: [...state.list,action.payload]
 
             }
 
